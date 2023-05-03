@@ -2,7 +2,11 @@
 const nextConfig = {
   experimental: {
     appDir: true,
+    serverComponentsExternalPackages: ["mongoose"],
   },
-}
+  images: {
+    domains: ["image.tmdb.org"],
+  },
+};
 
-module.exports = nextConfig
+module.exports = nextConfig;

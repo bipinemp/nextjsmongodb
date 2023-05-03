@@ -1,0 +1,101 @@
+.moviemain {
+  width: 90%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 3em;
+  align-items: center;
+  margin-bottom: 50px;
+}
+
+.moviemain h1 {
+  margin-top: 30px;
+  text-decoration: underline;
+}
+
+.moviecardmain {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 3em;
+}
+
+.moviecard {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 300px;
+  max-height: 500px;
+  padding: 10px;
+  gap: 5px;
+  justify-content: space-between;
+  box-shadow: 2px 4px 8px 5px rgba(0, 0, 0, 0.2);
+  border-radius: 10px;
+  cursor: pointer;
+}
+.moviecard p {
+  font-size: 0.9rem;
+}
+.moviecard img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+.moviecard a {
+  width: fit-content;
+  margin-left: auto;
+  background-color: black;
+  color: white;
+  border: none;
+  outline: none;
+  padding: 8px 20px;
+  border-radius: 25px;
+  margin-top: 10px;
+  font-size: 0.9rem;
+  cursor: pointer;
+  box-shadow: 2px 4px 4px 0px rgb(187, 185, 185);
+}
+
+.singlemovie {
+  width: 90%;
+  margin: 30px auto;
+  display: flex;
+  justify-content: space-between;
+  gap: 1em;
+}
+.singlemovie div {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+.singlemovieleft {
+  width: fit-content;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+  flex: 1;
+  gap: 5px;
+  margin-top: 10px;
+}
+.singlemovieleft img {
+  display: block;
+  object-fit: contain;
+  width: fit-content;
+  box-shadow: 2px 4px 8px 5px rgb(187, 185, 185);
+}
+.singlemovieright {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 0.5em;
+  flex: 2;
+}
+.singlemovieright h2 {
+  text-decoration: underline;
+  margin-bottom: 10px;
+}
+.singlemovieright i {
+  color: rgb(100, 16, 196);
+  font-weight: bold;
+  font-size: 0.9rem;
+}

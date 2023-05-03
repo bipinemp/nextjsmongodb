@@ -1,0 +1,11 @@
+.header {
+  background-color: black;
+  color: white;
+  padding: 20px;
+  position: sticky;
+  top: 0;
+}
+.navitems {
+  display: flex;
+  gap: 1em;
+}

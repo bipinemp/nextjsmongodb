@@ -1,38 +1,47 @@
 import mongoose from "mongoose";
 
-const MONGODB_URL = process.env.MONGO_KEY;
+// const MONGODB_URL = process.env.MONGO_KEY;
 
-if (!MONGODB_URL) {
-  throw new Error(
-    "Please define the MONGODB_URI environment variable inside .env.local"
-  );
-}
-let cached = global.mongoose;
-if (!cached) {
-  cached = global.mongoose = { con: null, promise: null };
-}
 const dbConnect = async () => {
-  if (cached.conn) {
-    return cached.conn;
+  const res = await mongoose.connect("mongodb://127.0.0.1:27017/Contact");
+  if (res) {
+    console.log("--- connected to db Sucessfully ---");
+  } else {
+    console.log("connection to db failed !!!");
   }
-  if (!cached.promise) {
-    const opts = {
-      bufferCommands: false,
-    };
-
-    cached.promise = mongoose.connect(MONGODB_URL, opts).then((mongoose) => {
-      return mongoose;
-    });
-  }
-
-  try {
-    cached.conn = await cached.promise;
-  } catch (e) {
-    cached.promise = null;
-    throw e;
-  }
-
-  return cached.conn;
 };
+
+// if (!MONGODB_URL) {
+//   throw new Error(
+//     "Please define the MONGODB_URI environment variable inside .env.local"
+//   );
+// }
+// let cached = global.mongoose;
+// if (!cached) {
+//   cached = global.mongoose = { con: null, promise: null };
+// }
+// const dbConnect = async () => {
+//   if (cached.conn) {
+//     return cached.conn;
+//   }
+//   if (!cached.promise) {
+//     const opts = {
+//       bufferCommands: false,
+//     };
+
+//     cached.promise = mongoose.connect(MONGODB_URL, opts).then((mongoose) => {
+//       return mongoose;
+//     });
+//   }
+
+//   try {
+//     cached.conn = await cached.promise;
+//   } catch (e) {
+//     cached.promise = null;
+//     throw e;
+//   }
+
+//   return cached.conn;
+// };
 
 export default dbConnect;

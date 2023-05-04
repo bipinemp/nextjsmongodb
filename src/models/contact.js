@@ -11,7 +11,7 @@ const contactSchema = new mongoose.Schema(
       required: true,
     },
   },
-  { timestamps: true }
+  { timestamps: true, collection: "messages" }
 );
 
 const Contact =

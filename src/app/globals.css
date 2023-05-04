@@ -21,3 +21,19 @@ button {
   cursor: pointer;
   box-shadow: 2px 4px 4px 0px rgb(187, 185, 185);
 }
+.error {
+  color: crimson;
+  font-weight: bold;
+  letter-spacing: 1px;
+  text-align: center;
+  padding: 10px;
+  border: 1px solid crimson;
+}
+.success {
+  color: rgb(8, 222, 8);
+  font-weight: bold;
+  letter-spacing: 1px;
+  text-align: center;
+  border: 1px solid rgb(8, 222, 8);
+  padding: 10px;
+}

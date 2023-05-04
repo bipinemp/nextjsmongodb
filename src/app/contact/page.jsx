@@ -9,6 +9,14 @@ const page = () => {
     message: "",
   });
 
+  const [status, setStatus] = useState(null);
+
+  if (status === "success" || status === "error") {
+    setTimeout(() => {
+      setStatus(null);
+    }, 3000);
+  }
+
   const handleChange = (e) => {
     const name = e.target.name;
     const value = e.target.value;
@@ -31,11 +39,14 @@ const page = () => {
           name: "",
           message: "",
         });
+        setStatus("success");
       } else {
         console.log("ERROR !!!");
+        console.log("error");
       }
     } catch (e) {
       console.log(e);
+      setStatus("error");
     }
   };
 
@@ -65,6 +76,14 @@ const page = () => {
           required
         />
         <button type="submit">Submit</button>
+        {status === "success" && (
+          <p className="success">Message sent Successfully :)</p>
+        )}
+        {status === "error" && (
+          <p className="error">
+            Something went wrong, while sending message, please try again :(
+          </p>
+        )}
       </form>
     </div>
   );

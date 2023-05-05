@@ -67,6 +67,7 @@ const page = async ({ params }) => {
                       width={80}
                       height={50}
                       style={{ objectFit: "contain" }}
+                      alt="companies"
                     />
                   )}
                 </span>

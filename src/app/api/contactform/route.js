@@ -2,25 +2,37 @@ import dbConn from "@/utils/dbConn";
 import Contact from "@/models/contact";
 import { NextResponse } from "next/server";
 
-export async function POST(req, res) {
+export async function POST(req) {
   try {
     const body = await req.json();
-
-    const { name, message } = body;
-
     await dbConn();
 
-    await Contact.create({ name, message });
-    return NextResponse.json(
-      {
-        message: "Message sent successfully",
-      },
-      { status: 200 }
-    );
+    await Contact.create(body);
+    return NextResponse.json({
+      message: "Message sent successfully",
+      status: 200,
+    });
   } catch (e) {
-    return NextResponse.json(
-      { message: "Server error, please try again" },
-      { status: 500 }
-    );
+    return NextResponse.json({
+      message: "Server error, please try again",
+      status: 500,
+    });
+  }
+}
+
+export async function GET() {
+  try {
+    await dbConn();
+    const messages = await Contact.find().sort({ createdAt: -1 });
+    return NextResponse.json({
+      messages,
+      message: "Messages readed successfully",
+      status: 200,
+    });
+  } catch (e) {
+    return NextResponse.json({
+      message: "Server error, please try again",
+      status: 500,
+    });
   }
 }

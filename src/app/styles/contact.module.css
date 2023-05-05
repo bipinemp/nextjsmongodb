@@ -14,3 +14,8 @@
 .contactform form textarea {
   padding: 10px;
 }
+
+.contactdetail {
+  background-color: rgb(229, 227, 227);
+  padding: 10px;
+}

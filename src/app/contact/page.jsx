@@ -1,13 +1,16 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import styles from "@/app/styles/contact.module.css";
+import axios from "axios";
 
 const page = () => {
   const [data, setData] = useState({
     name: "",
     message: "",
   });
+
+  const [messages, setMessages] = useState([]);
 
   const [status, setStatus] = useState(null);
 
@@ -27,7 +30,7 @@ const page = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch(`/api/contactform`, {
+      const response = await fetch("/api/contactform", {
         method: "POST",
         body: JSON.stringify({
           name: data.name,
@@ -50,9 +53,45 @@ const page = () => {
     }
   };
 
+  useEffect(() => {
+    const fetchMessages = async () => {
+      try {
+        const response = await fetch("/api/contactform", {
+          method: "GET",
+        });
+        const res = await response.json();
+        if (res.status === 200) {
+          setMessages(res.messages);
+        } else {
+          console.log("ERROR !!!");
+        }
+      } catch (e) {
+        console.log(e);
+      }
+    };
+    fetchMessages();
+  }, []);
+
+  const handleDelete = async (id) => {
+    const res = await fetch(`/api/contactform/${id}`, {
+      method: "DELETE",
+    });
+    console.log(res);
+  };
+
   return (
     <div className={styles.contactform}>
       <h1>Contact Page</h1>
+      {messages.map((item) => {
+        return (
+          <div key={item._id} className={styles.contactdetail}>
+            <p>{item._id}</p>
+            <p>{item.name}</p>
+            <p>{item.message}</p>
+            <button onClick={() => handleDelete(item._id)}>delete</button>
+          </div>
+        );
+      })}
 
       <form onSubmit={handleSubmit}>
         <label htmlFor="name">Name:</label>

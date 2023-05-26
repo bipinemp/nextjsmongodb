@@ -2,7 +2,6 @@
 
 import { useEffect, useState } from "react";
 import styles from "@/app/styles/contact.module.css";
-import axios from "axios";
 
 const page = () => {
   const [data, setData] = useState({
@@ -93,6 +92,15 @@ const page = () => {
         );
       })}
 
+      {status === "success" && (
+        <p className="success">Message sent Successfully :)</p>
+      )}
+      {status === "error" && (
+        <p className="error">
+          Something went wrong, while sending message, please try again :(
+        </p>
+      )}
+
       <form onSubmit={handleSubmit}>
         <label htmlFor="name">Name:</label>
         <input
@@ -115,14 +123,6 @@ const page = () => {
           required
         />
         <button type="submit">Submit</button>
-        {status === "success" && (
-          <p className="success">Message sent Successfully :)</p>
-        )}
-        {status === "error" && (
-          <p className="error">
-            Something went wrong, while sending message, please try again :(
-          </p>
-        )}
       </form>
     </div>
   );
